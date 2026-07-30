@@ -21,16 +21,16 @@ export default function Header() {
 
           return (
             <Link
-              key={link.name}
-              href={link.href}
-              aria-current={isActive ? "page" : undefined}
-              className={`flex w-full items-center justify-center rounded-full px-2 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-300 sm:px-4 sm:text-sm ${
-                isActive
-                    ? "bg-red-500 text-white"
-                    : "text-zinc-300 hover:bg-red-500 hover:text-white"
+                key={link.name}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`relative flex w-full items-center justify-center overflow-hidden rounded-full px-2 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-300 sm:px-4 sm:text-sm ${
+                    isActive
+                        ? "bg-red-500 text-white"
+                        : "text-zinc-300 before:absolute before:inset-0 before:origin-left before:scale-x-0 before:bg-red-500 before:transition-transform before:duration-500 hover:text-white hover:before:scale-x-100"
                 }`}
             >
-              {link.name}
+                <span className="relative z-10">{link.name}</span>
             </Link>
           );
         })}
