@@ -4,10 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
+  { name: "Dashboard", href: "/" },
   { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
+  { name: "Logout", href: "/logout" },
 ];
 
 export default function Header() {
@@ -15,22 +14,39 @@ export default function Header() {
 
   return (
     <header className="flex w-full justify-center pb-6.25">
-      <nav className="relative top-6.25 grid h-14 w-full max-w-2xl grid-cols-4 gap-2 rounded-full bg-[#1a1a1a] p-2 shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
+      <nav
+        className="relative top-6.25 inline-flex h-10 w-fit items-center gap-4 rounded-full bg-[#1a1a1a] shadow-[0_15px_40px_rgba(0,0,0,0.5)]"
+        style={{
+          paddingInline: "clamp(1rem, 2vw, 1.5rem)",
+        }}
+      >
         {links.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive =
+            pathname === link.href ||
+            (link.href !== "/" && pathname.startsWith(`${link.href}/`));
 
           return (
             <Link
-                key={link.name}
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={`relative flex w-full items-center justify-center overflow-hidden rounded-full px-2 text-[10px] font-semibold uppercase tracking-wider transition-colors duration-500 sm:px-4 sm:text-sm ${
-                    isActive
-                        ? "bg-red-500 text-white"
-                        : "text-zinc-300 before:absolute before:inset-0 before:origin-left before:scale-x-0 before:bg-red-500 before:transition-transform before:duration-500 hover:text-white hover:before:scale-x-100"
-                }`}
+              key={link.name}
+              href={link.href}
+              style={{
+                paddingInline: "clamp(2.5rem, 5vw, 4rem)",
+              }}
+              className={`
+                relative flex h-full items-center justify-center
+                overflow-hidden whitespace-nowrap rounded-full
+                text-sm font-semibold uppercase tracking-wide text-white
+                before:absolute before:inset-0 before:origin-left
+                before:rounded-full before:bg-[#ff2d3b]
+                before:transition-transform before:duration-300
+                ${
+                  isActive
+                    ? "before:scale-x-100"
+                    : "before:scale-x-0 hover:before:scale-x-100"
+                }
+              `}
             >
-                <span className="relative z-10">{link.name}</span>
+              <span className="relative z-10">{link.name}</span>
             </Link>
           );
         })}
