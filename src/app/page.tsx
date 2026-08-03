@@ -16,6 +16,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
+      <title>Login</title>
       <div className="flex flex-col gap-8">
         <h1 className="text-6xl">Welcome Back!</h1>
 
