@@ -1,15 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const links = [
   { name: "Dashboard", href: "/dashboard" },
   { name: "Projects", href: "/projects" },
-  { name: "Logout", href: "/logout" },
+  //{ name: "Logout", href: "/logout" },
 ];
 
 export default function Header() {
+
+  // Router and the logout functionality
+  const router = useRouter();
+
+  async function handleLogout() {
+    const response = await fetch('/api/auth/logout', {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      console.error("Logout failed.");
+      return;
+    }
+
+    router.replace("/");
+    router.refresh();
+  }
+
   const pathname = usePathname();
 
   return (
@@ -50,6 +68,24 @@ export default function Header() {
             </Link>
           );
         })}
+        <button
+          type="button"
+          onClick={handleLogout}
+          style={{
+            paddingInline: "clamp(2.5rem, 5vw, 4rem)",
+          }}
+          className="
+            relative flex h-full items-center justify-center
+            overflow-hidden whitespace-nowrap rounded-full
+            text-sm font-semibold uppercase tracking-wide text-white
+            before:absolute before:inset-0 before:origin-left
+            before:scale-x-0 before:rounded-full before:bg-[#ff2d3b]
+            before:transition-transform before:duration-300
+            hover:before:scale-x-100
+          "
+        >
+          <span className="relative z-10">Logout</span>
+        </button>
       </nav>
     </header>
   );
