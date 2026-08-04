@@ -2,6 +2,10 @@ import bcrypt from "bcrypt";
 import type { RowDataPacket } from "mysql2";
 import pool from "@/lib/db";
 
+// ft auth-for-login
+import { cookies } from 'next/headers';
+import { createSessionToken } from '@/lib/session';
+
 interface LoginRequestBody {
   email?: string;
   password?: string;
@@ -81,6 +85,25 @@ export async function POST(request: Request) {
         }
       );
     }
+
+    // ft auth-for-login
+    // Adding the session cookie here
+
+    const sessionToken = await createSessionToken({
+      userId: user.user_id,
+      email: user.email_address,
+      roleId: user.user_role_id,
+    });
+
+    const cookieStore = await cookies();
+
+    cookieStore.set("session", sessionToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 1
+    });
 
     return Response.json(
       {
