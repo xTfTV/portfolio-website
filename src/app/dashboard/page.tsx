@@ -13,6 +13,10 @@ import LiveDateTime from "../components/live-date-time/time";
 // ft - comment character counter
 import CommentsInput from "../components/comments/comment";
 
+// ft - adding the priority functionality to grab the db values
+import { getPriorities } from "@/lib/priority";
+import PrioritySelect from "../components/priority/priority-select";
+
 
 export default async function Dashboard() {
 
@@ -22,6 +26,8 @@ export default async function Dashboard() {
     if (!session) {
         redirect("/");
     }
+
+    const priorities = await getPriorities();
 
     // Grabbing the user's first name from their account
     const [rows] = await pool.query(
@@ -77,12 +83,14 @@ export default async function Dashboard() {
 
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
                             <label>Priority</label>
-                            <select className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none">
-                                {/* This is just for now */}
+
+                            <PrioritySelect priorities={priorities} />
+                            {/* <select className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none">
+                                
                                 <option>Low</option>
                                 <option>Medium</option>
                                 <option>High</option>
-                            </select>
+                            </select> */}
                         </div>
 
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
