@@ -37,21 +37,6 @@ export default async function Dashboard() {
 
     const user = users[0];
 
-    // // Current date/time
-    // const now = new Date();
-
-    // // Formatting
-    // const date = now.toLocaleDateString("en-US", {
-    //     weekday: "long",
-    //     month: "long",
-    //     day: "numeric",
-    // });
-
-    // const time = now.toLocaleTimeString("en-US", {
-    //     hour: "numeric",
-    //     minute: "2-digit",
-    // });
-
     return (
         <div className="min-h-screen">
             <title>Dashboard</title>
@@ -65,9 +50,6 @@ export default async function Dashboard() {
                     <h1 className="text-xl font-extrabold">Welcome back {user.first_name}!</h1>
                     <h1 className="text-xl font-extrabold">It is currently:</h1>
                     <LiveDateTime />
-
-                    {/* <p className="text-sm font-bold">{date}</p>
-                    <p className="text-sm font-bold">{time}</p> */}
                 </div>
 
                 <div className="min-h-42 rounded-3xl bg-[#1f1f1f] p-6 md:col-span-4">
@@ -78,8 +60,55 @@ export default async function Dashboard() {
                     Critical
                 </div>
 
-                <div className="min-h-64 rounded-3xl bg-[#1f1f1f] p-6 md:col-span-4 md:row-span-2">
-                    Project Creation
+                <div className="min-h-64 rounded-3xl bg-[#1f1f1f] p-6 md:col-span-4 md:row-span-2 flex flex-col items-center gap-2">
+                    <h1 className="text-xl font-extrabold">Add your project!</h1>
+                    <form className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
+                            <label>Project Name</label>
+                            <input 
+                                type="text" 
+                                className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
+                            />
+                        </div>
+                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
+                            <label>Priority</label>
+                            <select className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none">
+                                {/* This is just for now */}
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                            </select>
+                        </div>
+                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
+                            <label>Project Due Date</label>
+                            {/* This is just for now */}
+                            <input 
+                                type="date"
+                                className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
+                            />
+                        </div>
+                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
+                            <label>Project Due Time</label>
+                            {/* This is just for now */}
+                            <input 
+                                type="time"
+                                className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
+                            />
+                        </div>
+                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2 md:col-span-2">
+                            <label>Comments</label>
+                            <textarea
+                                placeholder="500 Character Limit" 
+                                className="min-h-24 resize-none rounded-xl bg-[#1f1f1f] p-4 outline-none" 
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="h-11 rounded-xl bg-red-500 font-semibold md:col-span-2"
+                        >
+                            Submit Project
+                        </button>
+                    </form>
                 </div>
 
                 <div className="min-h-52 rounded-3xl bg-[#1f1f1f] p-6 md:col-span-2">
