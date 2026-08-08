@@ -104,12 +104,21 @@ export default async function Dashboard() {
                         </div>
 
                         <CommentsInput />
-                        
+
                         <button
                             type="submit"
-                            className="h-11 rounded-xl bg-red-500 font-semibold md:col-span-2"
+                            className="
+                                relative h-11 overflow-hidden rounded-xl
+                                font-semibold text-white md:col-span-2
+                                before:absolute before:inset-0 before:origin-left 
+                                before:scale-x-0 before:rounded-xl before:bg-[#ff2d3b]
+                                before:transition-transform before:duration-300
+                                hover:before:scale-x-100 cursor-pointer
+                            "
                         >
-                            Submit Project
+                            <span className="relative z-10">
+                                Submit Project
+                            </span>
                         </button>
                     </form>
                 </div>
