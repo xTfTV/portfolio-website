@@ -10,6 +10,9 @@ import pool from '@/lib/db'
 // ft - live date/time
 import LiveDateTime from "../components/live-date-time/time";
 
+// ft - comment character counter
+import CommentsInput from "../components/comments/comment";
+
 
 export default async function Dashboard() {
 
@@ -63,6 +66,7 @@ export default async function Dashboard() {
                 <div className="min-h-64 rounded-3xl bg-[#1f1f1f] p-6 md:col-span-4 md:row-span-2 flex flex-col items-center gap-2">
                     <h1 className="text-xl font-extrabold">Add your project!</h1>
                     <form className="grid grid-cols-1 gap-4 md:grid-cols-2">
+
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
                             <label>Project Name</label>
                             <input 
@@ -70,6 +74,7 @@ export default async function Dashboard() {
                                 className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
                             />
                         </div>
+
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
                             <label>Priority</label>
                             <select className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none">
@@ -79,6 +84,7 @@ export default async function Dashboard() {
                                 <option>High</option>
                             </select>
                         </div>
+
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
                             <label>Project Due Date</label>
                             {/* This is just for now */}
@@ -87,6 +93,7 @@ export default async function Dashboard() {
                                 className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
                             />
                         </div>
+
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
                             <label>Project Due Time</label>
                             {/* This is just for now */}
@@ -95,13 +102,9 @@ export default async function Dashboard() {
                                 className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none"
                             />
                         </div>
-                        <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2 md:col-span-2">
-                            <label>Comments</label>
-                            <textarea
-                                placeholder="500 Character Limit" 
-                                className="min-h-24 resize-none rounded-xl bg-[#1f1f1f] p-4 outline-none" 
-                            />
-                        </div>
+
+                        <CommentsInput />
+                        
                         <button
                             type="submit"
                             className="h-11 rounded-xl bg-red-500 font-semibold md:col-span-2"
