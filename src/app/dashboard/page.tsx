@@ -85,12 +85,6 @@ export default async function Dashboard() {
                             <label>Priority</label>
 
                             <PrioritySelect priorities={priorities} />
-                            {/* <select className="h-11 rounded-xl bg-[#1f1f1f] px-4 outline-none">
-                                
-                                <option>Low</option>
-                                <option>Medium</option>
-                                <option>High</option>
-                            </select> */}
                         </div>
 
                         <div className="rounded-2xl bg-[#292929] p-4 flex flex-col gap-2">
